@@ -1,10 +1,11 @@
 <template>
     <div class="black-bg" v-if="detailIsOpened">
         <div class="white-bg">
+            <img :src="products[viewIdx].image" alt="" width="100%">
             <h4>{{ products[viewIdx].title }}</h4>
             <p>{{ products[viewIdx].content }}</p>
             <p>{{ products[viewIdx].price }} 원</p>
-<!--            <button @click="detailIsOpened = false">닫기</button>--><!-- props 로 가져온 부모 데이터를 직접적으로 수정할 수 없음.-->
+            <button @click="$emit('closeDetail')">닫기</button>
         </div>
     </div>
 </template>

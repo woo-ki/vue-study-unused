@@ -1,7 +1,7 @@
 <template>
     <div id="app">
 
-        <DetailModal :products="products" :detailIsOpened="detailIsOpened" :viewIdx="viewIdx"/>
+        <DetailModal @closeDetail="closeDetail()" :products="products" :detailIsOpened="detailIsOpened" :viewIdx="viewIdx"/>
 
         <div class="menu">
             <a href="" v-for="(menu, i) in menus" :key="i">{{ menu }}</a>
@@ -9,7 +9,7 @@
 
         <Discount/>
 
-        <OneRoom v-for="(p, i) in products" :key="i" :p="p"/>
+        <OneRoom @openDetail="openDetail($event)" v-for="(p, i) in products" :key="i" :p="p"/>
     </div>
 </template>
 
@@ -30,10 +30,13 @@ export default {
         }
     },
     methods: {
-        // openDetail(i) {
-        //     this.detailIsOpened = true;
-        //     this.viewIdx = i;
-        // }
+        openDetail(i) {
+            this.detailIsOpened = true;
+            this.viewIdx = i;
+        },
+        closeDetail() {
+            this.detailIsOpened = false;
+        }
     },
     components: {
         OneRoom,
