@@ -14,6 +14,8 @@
             <a href="" v-for="(menu, i) in menus" :key="i">{{ menu }}</a>
         </div>
 
+        <Discount/>
+
         <div v-for="(p, i) in products" :key="i">
             <img :src="p.image" class="room-img" alt="">
             <h4 @click="openDetail(i)">{{ p.title }}</h4>
@@ -24,6 +26,7 @@
 
 <script>
 import products from './assets/js/oneroom.js';
+import Discount from "@/components/Discount";
 
 export default {
     name: 'App',
@@ -41,7 +44,9 @@ export default {
             this.viewIdx = i;
         }
     },
-    components: {}
+    components: {
+        Discount
+    }
 }
 </script>
 
