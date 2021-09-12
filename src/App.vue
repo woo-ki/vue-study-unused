@@ -1,16 +1,18 @@
 <template>
-    <div id="app">
 
-        <DetailModal @closeDetail="closeDetail()" :products="products" :detailIsOpened="detailIsOpened" :viewIdx="viewIdx"/>
+    <transition name="fade">
+        <DetailModal @closeDetail="closeDetail()" :products="products" :detailIsOpened="detailIsOpened"
+                     :viewIdx="viewIdx"/>
+    </transition>
 
-        <div class="menu">
-            <a href="" v-for="(menu, i) in menus" :key="i">{{ menu }}</a>
-        </div>
-
-        <Discount/>
-
-        <OneRoom @openDetail="openDetail($event)" v-for="(p, i) in products" :key="i" :p="p"/>
+    <div class="menu">
+        <a href="" v-for="(menu, i) in menus" :key="i">{{ menu }}</a>
     </div>
+
+    <Discount/>
+
+    <OneRoom @openDetail="openDetail($event)" v-for="(p, i) in products" :key="i" :p="p"/>
+
 </template>
 
 <script>
@@ -45,8 +47,19 @@ export default {
     }
 }
 </script>
-
 <style>
+.fade-enter-from, .fade-leave-to {
+    opacity: 0;
+}
+
+.fade-enter-active, .fade-leave-active {
+    transition: all 1s;
+}
+
+.fade-enter-to, .fade-leave-from {
+    opacity: 1;
+}
+
 #app {
     font-family: Avenir, Helvetica, Arial, sans-serif;
     -webkit-font-smoothing: antialiased;
